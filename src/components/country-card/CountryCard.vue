@@ -1,5 +1,9 @@
 <template>
-	<div class="country-card" :class="{ 'country-card-dark': isDark }">
+	<div
+		class="country-card"
+		:class="{ 'country-card-dark': isDark }"
+		@click="goToCountryDetails"
+	>
 		<div class="country-card_image-box">
 			<img :src="flag" class="country-card-image" alt="" />
 		</div>
@@ -35,6 +39,16 @@ export default {
 	},
 	computed: {
 		...mapState(['isDark']),
+	},
+	methods: {
+		goToCountryDetails() {
+			this.$router.push({
+				name: 'country-details',
+				params: {
+					country: this.name,
+				},
+			});
+		},
 	},
 };
 </script>
