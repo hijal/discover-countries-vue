@@ -79,7 +79,6 @@ export default {
 	props: {
 		country: {
 			type: Object,
-			required: true,
 		},
 	},
 	computed: {
@@ -96,9 +95,9 @@ export default {
 			const neighbors = [];
 			this.country.borders?.forEach((countryCode) => {
 				const newNeighbor = this.countries.find(
-					(c) => c.alpha3Code === countryCode
+					(country) => country.alpha3Code === countryCode
 				);
-				neighbors.push(newNeighbor.name);
+				if (newNeighbor) neighbors.push(newNeighbor.name);
 			});
 			return neighbors;
 		},

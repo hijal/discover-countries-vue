@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 body {
 	font-family: 'Nunito Sans';
 	margin: 0;

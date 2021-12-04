@@ -17,6 +17,7 @@
 		<div
 			class="custom-input_close-icon"
 			:class="{ 'custom-input_close-icon-dark': isDark }"
+			@click="clearSearch"
 		>
 			<close-icon></close-icon>
 		</div>
@@ -56,14 +57,14 @@ export default {
 				clearTimeout(this.timeoutQuery);
 			}
 			if (query) {
-				this.timeoutQuery = setTimeout(() => this.searchCountries(query), 300);
+				this.timeoutQuery = setTimeout(
+					() => this.searchCountries({ country: query }),
+					300
+				);
 			} else {
 				this.timeoutQuery = setTimeout(() => this.getAllCountries(), 100);
 			}
 		},
-	},
-	mounted() {
-		console.log(this.type);
 	},
 };
 </script>

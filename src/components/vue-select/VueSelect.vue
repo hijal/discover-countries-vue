@@ -1,6 +1,6 @@
 <template>
 	<div class="select-dropdown" :class="{ 'select-dropdown-dark': isDark }">
-		<select class="form-select" aria-label="Filter by Region">
+		<select class="form-select" aria-label="Filter by Region" v-model="region">
 			<option selected>Filter by Region</option>
 			<option v-for="option in options" :key="option" :value="option">
 				{{ option }}
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
 	name: 'VueSelect',
@@ -19,11 +19,19 @@ export default {
 	},
 	data() {
 		return {
-			region: this.options[0],
+			region: 'All',
 		};
 	},
 	computed: {
 		...mapState(['isDark']),
+	},
+	methods: {
+		...mapActions(['filterRegion']),
+	},
+	watch: {
+		region(newRegion) {
+			this.filterRegion({ region: newRegion });
+		},
 	},
 };
 </script>
